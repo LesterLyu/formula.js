@@ -677,12 +677,14 @@ describe('Math & Trig', function() {
 
   it("SUMIF", function() {
     mathTrig.SUMIF([1, 2, 3], '>2').should.equal(3);
+    mathTrig.SUMIF([1, 2, 3], '=2').should.equal(2);
+    mathTrig.SUMIF([1, 2, 3], '<>2').should.equal(4);
     mathTrig.SUMIF([
       [1, 1],
       [2, 2],
       [3, 3]
     ], '>2').should.equal(6);
-    mathTrig.SUMIF([1, 'invalid', 3], '>2').should.equal(error.value);
+    mathTrig.SUMIF([1, 'invalid', 3], '>2').should.equal(3);
     mathTrig.SUMIF([1, 2, 3], '>1', [4, 5, 6]).should.equal(11);
     mathTrig.SUMIF(['1', '2', '3'], '1', [4, 5, 6]).should.equal(4);
   });
