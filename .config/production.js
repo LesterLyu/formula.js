@@ -1,8 +1,6 @@
 var webpack = require('webpack');
 const path = require('path');
-var plugins = [
-  new webpack.optimize.UglifyJsPlugin()
-];
+
 var filename = '[name].min.js';
 
 module.exports = {
@@ -15,5 +13,12 @@ module.exports = {
     library: 'formulajs',
     libraryTarget: 'umd'
   },
-  plugins: plugins
+  module: {
+    noParse: function(content) {
+      return /numbro\/languages/.test(content);
+    }
+  },
+  optimization: {
+    minimize: true
+  }
 };
