@@ -16,7 +16,15 @@ describe('Date & Time', function() {
 
   it('DATEVALUE', function() {
     dateTime.DATEVALUE('1/1/1900').should.equal(1);
+    dateTime.DATEVALUE('1900-1-1').should.equal(1);
+    dateTime.DATEVALUE('1/31/1900').should.equal(31);
+    dateTime.DATEVALUE('1900-1-31').should.equal(31);
+    // leap year bug start from 3/1/1900:
+    // see: https://support.microsoft.com/en-ca/help/214326/excel-incorrectly-assumes-that-the-year-1900-is-a-leap-year
+    dateTime.DATEVALUE('11/30/1900').should.equal(335);
+    dateTime.DATEVALUE('12/31/1900').should.equal(366);
     dateTime.DATEVALUE('12/31/9999').should.equal(2958465);
+    dateTime.DATEVALUE('9999-12-31').should.equal(2958465);
     dateTime.DATEVALUE('foo bar').should.equal(error.value);
     dateTime.DATEVALUE(1).should.equal(error.value);
   });
@@ -170,9 +178,9 @@ describe('Date & Time', function() {
   });
 
   it('WORKDAY', function() {
-    dateTime.WORKDAY('1/1/1900', 1).getDate().should.equal(2);
-    dateTime.WORKDAY('1/1/1900', 7).getDate().should.equal(10);
-    dateTime.WORKDAY('1/1/1900', 2, '1/2/1900').getDate().should.equal(4);
+    dateTime.WORKDAY('1/1/1900', 1).getUTCDate().should.equal(2);
+    dateTime.WORKDAY('1/1/1900', 7).getUTCDate().should.equal(10);
+    dateTime.WORKDAY('1/1/1900', 2, '1/2/1900').getUTCDate().should.equal(4);
     dateTime.WORKDAY('a', 1, '1/2/1900').should.equal(error.value);
     dateTime.WORKDAY('1/1/1900', 'a').should.equal(error.value);
     dateTime.WORKDAY('1/1/1900', 1, 'a').should.equal(error.value);
@@ -180,8 +188,8 @@ describe('Date & Time', function() {
   });
 
   it('WORKDAY.INTL', function() {
-    dateTime.WORKDAY.INTL('1/1/1900', 1).getDate().should.equal(2);
-    dateTime.WORKDAY.INTL('1/1/1905', 1, 2).getDate().should.equal(3);
+    dateTime.WORKDAY.INTL('1/1/1900', 1).getUTCDate().should.equal(2);
+    dateTime.WORKDAY.INTL('1/1/1905', 1, 2).getUTCDate().should.equal(3);
     dateTime.WORKDAY.INTL('1/1/1900', 1, 'a').should.equal(error.value);
   });
 

@@ -23,7 +23,7 @@
   "dependencies": {
     "bessel": "^0.2.0",
     "jStat": "^1.7.0",
-    "numbro": "^1.11.0"
+    "moment": "^2.23.0"
   },
   "devDependencies": {
     "blanket": "^1.1.6",

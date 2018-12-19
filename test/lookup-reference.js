@@ -35,7 +35,7 @@ describe('Lookup Reference', function() {
     lookup.VLOOKUP(1, [[1, 2]], 2, true).should.equal(2);
     lookup.VLOOKUP(3, [[1, 2],[3, 4]], 2, true).should.equal(4);
     lookup.VLOOKUP(5, [[1, 2],[3, 4]], 2, false).should.equal(error.na);
-    lookup.VLOOKUP(5, [[1, 2],[3, 4]], 2, true).should.equal(error.na);
+    lookup.VLOOKUP(5, [[1, 2],[3, 4]], 2, true).should.equal(4);
     lookup.VLOOKUP('ji', [['jim', 2],['jam', 4]], 2, false).should.equal(error.na);
     lookup.VLOOKUP('ji', [['jim', 2],['jam', 4]], 2, true).should.equal(2);
     lookup.VLOOKUP('li', [['jim', 2],['jam', 4]], 2, true).should.equal(error.na);
