@@ -18,6 +18,10 @@ module.exports = {
       return /numbro\/languages/.test(content);
     }
   },
+  plugins: [
+    // Ignore all locale files of moment.js
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+  ],
   optimization: {
     minimize: true
   }

@@ -5,10 +5,8 @@ require('should');
 
 describe('Date & Time', function() {
   it('DATE', function() {
-    var date = dateTime.DATE(1900, 1, 1);
-    date.getFullYear().should.equal(1900);
-    date.getMonth().should.equal(1 - 1);
-    date.getDay().should.equal(1);
+    dateTime.DATE(1900, 1, 1).should.equal(1);
+    dateTime.DATE(2001, 5, 12).should.equal(37023);
 
     dateTime.DATE(1900, 1, -1).should.equal(error.num);
     dateTime.DATE('invalid').should.equal(error.value);
@@ -178,9 +176,9 @@ describe('Date & Time', function() {
   });
 
   it('WORKDAY', function() {
-    dateTime.WORKDAY('1/1/1900', 1).getUTCDate().should.equal(2);
-    dateTime.WORKDAY('1/1/1900', 7).getUTCDate().should.equal(10);
-    dateTime.WORKDAY('1/1/1900', 2, '1/2/1900').getUTCDate().should.equal(4);
+    dateTime.WORKDAY('1/1/1900', 1).should.equal(2);
+    dateTime.WORKDAY('1/1/1900', 7).should.equal(10);
+    dateTime.WORKDAY('1/1/1900', 2, '1/2/1900').should.equal(4);
     dateTime.WORKDAY('a', 1, '1/2/1900').should.equal(error.value);
     dateTime.WORKDAY('1/1/1900', 'a').should.equal(error.value);
     dateTime.WORKDAY('1/1/1900', 1, 'a').should.equal(error.value);
@@ -188,8 +186,8 @@ describe('Date & Time', function() {
   });
 
   it('WORKDAY.INTL', function() {
-    dateTime.WORKDAY.INTL('1/1/1900', 1).getUTCDate().should.equal(2);
-    dateTime.WORKDAY.INTL('1/1/1905', 1, 2).getUTCDate().should.equal(3);
+    dateTime.WORKDAY.INTL('1/1/1900', 1).should.equal(2);
+    dateTime.WORKDAY.INTL('1/1/1905', 1, 2).should.equal(1830);
     dateTime.WORKDAY.INTL('1/1/1900', 1, 'a').should.equal(error.value);
   });
 
